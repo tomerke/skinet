@@ -11,6 +11,7 @@ using API.Dtos;
 using AutoMapper;
 using API.Errors;
 using Microsoft.AspNetCore.Http;
+using API.Helpers;
 
 namespace API.Controllers
 {
@@ -33,24 +34,15 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IReadOnlyList<ProductToReturnDto>>> getProducts()
+        public async Task<ActionResult<Pagination<ProductToReturnDto>>> getProducts([FromQuery]ProductSpecParams productParams)
         {
-            var spec = new ProductsWithTypesAndBrandsSpecification();
+            var spec = new ProductsWithTypesAndBrandsSpecification(productParams);
+            var countSpec = new ProductWithFiltersForCountSpecification(productParams);
+            var totalItems = await _productRepo.CountAsync(countSpec);
             var product = await _productRepo.ListAsync(spec);
+            var data = _mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductToReturnDto>>(product);
+            return Ok(new Pagination<ProductToReturnDto>(productParams.PageIndex, productParams.PageSize, totalItems,data));
 
-            return Ok(_mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductToReturnDto>>(product));
-
-            //  products.Select(product => new ProductToReturnDto
-            // {
-            //      Id = product.Id,
-            //     Name = product.Name,
-            //     Description = product.Description,
-            //     PictureUrl = product.PictureUrl,
-            //     Price = product.Price,
-            //     ProductBrand = product.ProductBrand.Name,
-            //     ProcutType = product.ProcutType.Name
-            // }).ToList();
-            // return Ok(products);
         }
 
         [HttpGet("{id}")]
