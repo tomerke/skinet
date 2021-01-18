@@ -1,0 +1,15 @@
+<div class="row" *ngIf="product">
+<div class="col-6">
+    <img src="{{product.pictureUrl}}" alt="{{product.name}}" class="img-fluid w-100">
+</div>
+<div class="col-6">
+    <h3>{{product.name}}</h3>
+    <p>{{product.price | currency}}</p>
+    <div>
+        <i class="fa fa-minus-cycle text-warning" style="cursor: pointer; font-size: 2em;"></i>
+        <span> 2</span>
+        <i class="fa fa-plus-cycle text-warning" style="cursor: pointer; font-size: 2em;"></i>
+
+    </div>
+</div>
+</div>
