@@ -1,0 +1,8 @@
+namespace API.Dtos
+{
+    public class UserDto
+    {
+        public string Email { get; set; }
+        public int MyProperty { get; set; }
+    }
+}
