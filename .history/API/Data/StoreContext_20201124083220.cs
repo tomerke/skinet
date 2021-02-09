@@ -1,9 +1,0 @@
-using M
-
-namespace API.Data
-{
-    public class StoreContext : DbContext
-    {
-
-    }
-}

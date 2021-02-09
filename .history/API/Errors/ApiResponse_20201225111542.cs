@@ -1,8 +1,0 @@
-namespace API.Errors
-{
-    public class ApiResponse
-    {
-        public int MyProperty { get; set; }
-        public int MyProperty { get; set; }
-    }
-}
