@@ -1,0 +1,13 @@
+<div class="form-label-group">
+    <input
+    [type]="type"
+    (input)="onChange($event.target.value)"
+    (blur)="onTouched()"
+    id="{{label}}"
+    #input
+    class="form-control"
+    placeholder="{{label}}"
+    >
+    <label for="{{label}}">{{label}}</label>
+    <div class="invalid-feedback" *ngIf="(contrilDir && contrilDir.control && !contrilDir.control.valid && contrilDir.)"></div>
+  </div>

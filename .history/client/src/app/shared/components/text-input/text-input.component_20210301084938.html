@@ -1,0 +1,15 @@
+<div class="form-label-group">
+    <input
+    [type]="type"
+    (input)="onChange($event.target.value)"
+    (blur)= 
+    id="inputEmail"
+    class="form-control"
+    placeholder="Email address"
+    >
+    <label for="inputEmail">Email address</label>
+    <span class="text-danger" *ngIf="loginForm.get('email').invalid && loginForm.get('email').touched &&
+    loginForm.get('email').errors['required']">Email Address is required</span>
+    <span class="text-danger" *ngIf="loginForm.get('email').invalid && loginForm.get('email').touched &&
+    loginForm.get('email').errors['pattern']">Email Address is not valid</span>
+  </div>
