@@ -1,0 +1,11 @@
+<div class="mt-4" [formGroup]="checkoutForm">
+    <div class="row" formGroupName="deliveryForm">
+        <div class="col-6 form-group" *ngFor="let method of deliveryMethods">
+            <input  type="radio"
+            id={{method.id}}
+            value={{method.id}}
+            formControlName="delivryMethod"
+            class="custom-control-input">
+        </div>
+    </div>
+</div>
